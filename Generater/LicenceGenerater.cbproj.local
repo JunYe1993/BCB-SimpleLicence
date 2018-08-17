@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2018/08/15 11:35:19.000.633,=C:\Users\daniel1993\Documents\Embarcadero\Studio\Projects\Project1PCH1.h</Transaction>
+    <Transaction>2018/08/15 11:35:23.000.302,=C:\Users\daniel1993\Documents\Embarcadero\Studio\Projects\Unit1.cpp</Transaction>
+    <Transaction>2018/08/15 11:35:57.000.312,C:\Users\daniel1993\Documents\Embarcadero\Studio\Projects\LicenceGeneraterPCH1.h=C:\Users\daniel1993\Documents\Embarcadero\Studio\Projects\Project1PCH1.h</Transaction>
+    <Transaction>2018/08/15 11:35:57.000.316,C:\Users\daniel1993\Documents\Embarcadero\Studio\Projects\LicenceGenerater.cbproj=C:\Users\daniel1993\Documents\Embarcadero\Studio\Projects\Project1.cbproj</Transaction>
+    <Transaction>2018/08/15 11:36:13.000.890,C:\Users\daniel1993\Documents\Embarcadero\Studio\Projects\JunYe\Licence\Generater\Main.h=C:\Users\daniel1993\Documents\Embarcadero\Studio\Projects\Unit1.h</Transaction>
+    <Transaction>2018/08/15 11:36:13.000.890,C:\Users\daniel1993\Documents\Embarcadero\Studio\Projects\JunYe\Licence\Generater\Main.cpp=C:\Users\daniel1993\Documents\Embarcadero\Studio\Projects\Unit1.cpp</Transaction>
+    <Transaction>2018/08/15 11:36:13.000.890,C:\Users\daniel1993\Documents\Embarcadero\Studio\Projects\JunYe\Licence\Generater\Main.dfm=C:\Users\daniel1993\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>2018/08/15 11:36:15.000.962,C:\Users\daniel1993\Documents\Embarcadero\Studio\Projects\JunYe\Licence\Generater\LicenceGeneraterPCH1.h=C:\Users\daniel1993\Documents\Embarcadero\Studio\Projects\LicenceGeneraterPCH1.h</Transaction>
+    <Transaction>2018/08/15 11:36:17.000.758,C:\Users\daniel1993\Documents\Embarcadero\Studio\Projects\JunYe\Licence\Generater\LicenceGenerater.cbproj=C:\Users\daniel1993\Documents\Embarcadero\Studio\Projects\LicenceGenerater.cbproj</Transaction>
+    <Transaction>2018/08/15 11:48:15.000.713,=C:\Users\daniel1993\Documents\Embarcadero\Studio\Projects\JunYe\Licence\Generater\File1.h</Transaction>
+    <Transaction>2018/08/15 11:49:46.000.770,C:\Users\daniel1993\Documents\Embarcadero\Studio\Projects\JunYe\Licence\Generater\File1.h=C:\Users\daniel1993\Documents\Embarcadero\Studio\Projects\JunYe\Licence\Generater\LicStruct.h</Transaction>
+    <Transaction>2018/08/15 16:03:48.000.041,=C:\Users\daniel1993\Documents\Embarcadero\Studio\Projects\JunYe\Licence\Generater\File1.cpp</Transaction>
+    <Transaction>2018/08/15 16:04:15.000.994,C:\Users\daniel1993\Documents\Embarcadero\Studio\Projects\JunYe\Licence\Generater\File1.cpp=C:\Users\daniel1993\Documents\Embarcadero\Studio\Projects\JunYe\Licence\Generater\Function.cpp</Transaction>
+    <Transaction>2018/08/15 16:28:55.000.186,C:\Users\daniel1993\Documents\Embarcadero\Studio\Projects\JunYe\Licence\Generater\LicStruct.h=</Transaction>
+    <Transaction>2018/08/15 16:30:07.000.182,=C:\Users\daniel1993\Documents\Embarcadero\Studio\Projects\JunYe\Licence\Struct\LicStruct.h</Transaction>
+  </Transactions>
+</BorlandProject>

@@ -1,0 +1,13 @@
+#ifndef CHECKERH
+#define CHECKERH
+
+#include "LicStruct.h"
+class Checker
+{
+private:
+	void __fastcall LicError(String msg);
+public:
+	void __fastcall Check();
+};
+
+#endif

@@ -1,0 +1,7 @@
+#ifndef CHECKERH
+#define CHECKERH
+
+#include "LicStruct.h"
+class TMainForm
+
+#endif

@@ -1,0 +1,157 @@
+#include <System.Classes.hpp>
+#include <Vcl.Controls.hpp>
+#include <Vcl.StdCtrls.hpp>
+#include <Vcl.Forms.hpp>
+#include <io.h>
+#include <stdio.h>
+#include <tchar.h>
+#include "dir.h"
+#include "stdlib.h"
+#include "fstream.h"
+#include "math.h"
+
+struct _SerLic{
+	char aToolName[40];
+	bool bLock;
+	int iVer;
+};
+
+struct _Lic{
+	char aToolName[40];
+	char aRefDate[20];
+	char aClientDate[20];
+	bool bLock;
+	int iVer;
+	int iDay;
+	int iCount;
+};
+getlicence(){
+	FILE *file;
+	FILE *Serfile;
+	bool bCheckCount = false;
+	bool bCheckSer;
+	_TCHAR aDate[512];
+	_TCHAR aLicPath[512];
+	_TCHAR aDeCode[512];
+	struct _Lic LoadLic;
+	struct _SerLic LoadSerLic;
+	AnsiString aTmp;
+	TDateTime dLic,dNow,dDiff;
+
+	memset(LoadLic.aToolName,0,40);
+	memset(LoadLic.aRefDate,0,20);
+	memset(LoadLic.aClientDate,0,20);
+
+	#if 0
+	sprintf(aLicPath,"\\\\We1-filesrv\\License\\Part2224.lic");
+	if(!FileExists(aLicPath)){
+	MessageBox(Main_Form->Handle,"無法與Server連線確認軟體版本，請注意是否使用最新版本!!!","Warnning",MB_ICONWARNING);
+	bCheckSer = false;
+	}
+	else{
+	Serfile = fopen(aLicPath,"rb");
+	fseek(Serfile,sizeof(LoadSerLic)*0,SEEK_SET);
+	fread(&LoadSerLic,sizeof(LoadSerLic),1,Serfile);
+	fclose(Serfile);
+	 bCheckSer = true;
+	}
+	SetDev.bSN = false;
+
+	Main_Form->Caption = aProgramName + " Test Tools Ver" +aProgramVersion +" ("+aProgramReleaseDate+")";
+	#endif
+
+	#if 1
+	bCheckSer = false;
+	SetDev.bSN = true;
+
+	Main_Form->Caption = aProgramName + " Test Tools Ver" +aProgramVersion +" ("+aProgramReleaseDate+") for China";
+	#endif
+
+	#if 1
+	sprintf(aLicPath,"%SLicense.lic",ExtractFilePath(Application->ExeName));
+	if(!FileExists(aLicPath)){
+		MessageBox(Main_Form->Handle,"License not found!!!","Warnning",MB_ICONWARNING);
+		Application->Terminate();
+	}else{
+		try{
+			file = fopen(aLicPath,"rb");
+			fseek(file,sizeof(LoadLic)*0,SEEK_SET);
+			fread(&LoadLic,sizeof(LoadLic),1,file);
+			fclose(file);
+			if(bCheckSer){
+				LoadLic.bLock = LoadSerLic.bLock;
+				if(LoadLic.bLock){
+					strcpy(aBuf,"Software Locked!!!");
+					throw _ErrorLic();
+				}
+				if(LoadSerLic.iVer != LoadLic.iVer){
+					strcpy(aBuf,"Software Version Error!!!");
+					throw _ErrorLic();
+				}
+			}
+
+			LoadLic.iCount++;
+
+			if(strcmp(LoadLic.aRefDate,"NULL") == 0){
+				strcpy(LoadLic.aRefDate,AnsiString(DateToStr(Date())).c_str() );
+			}
+
+			if(strcmp(LoadLic.aClientDate,"NULL") == 0){
+				strcpy(LoadLic.aClientDate,AnsiString(DateToStr(Date())).c_str() );
+			}else{
+				aTmp = LoadLic.aClientDate;
+
+				dLic = StrToDate(aTmp);
+				dNow = StrToDate(Date());
+				dDiff = dNow - dLic;
+				if(dDiff.Val < 0){
+					strcpy(aBuf,"License Date Error!!!");
+					throw _ErrorLic();
+				}
+				strcpy(LoadLic.aClientDate,AnsiString(DateToStr(Date())).c_str() );
+			}
+
+			dLic = StrToDate(LoadLic.aRefDate);
+			dNow = StrToDate(Date());
+			dDiff = dNow - dLic;
+			if(dDiff.Val > LoadLic.iDay){
+				strcpy(aBuf,"License Time Out!!!");
+				throw _ErrorCode();
+			}
+
+			memset(aDeCode,0,512);
+			for(int i=0; i<strlen(LoadLic.aToolName); i++){
+				aDeCode[i] = LoadLic.aToolName[i]^0xA;
+			}
+
+			if(strcmp(aDeCode,"Part2224V5") != 0){
+				strcpy(aBuf,"License Format Error!!!");
+				throw _ErrorLic();
+			}
+
+			if(bCheckCount){
+				if(LoadLic.iCount > 100){
+					strcpy(aBuf,"Count exceeds!!!");
+					throw _ErrorLic();
+				}
+			}
+			file = fopen(aLicPath,"wb");
+			fseek(file,sizeof(LoadLic)*0,SEEK_SET);
+			fwrite(&LoadLic,sizeof(LoadLic),1,file);
+			fclose(file);
+		}catch(_ErrorLic){
+			file = fopen(aLicPath,"wb");
+			fseek(file,sizeof(LoadLic)*0,SEEK_SET);
+			fwrite(&LoadLic,sizeof(LoadLic),1,file);
+			fclose(file);
+
+			MessageBox(Main_Form->Handle,aBuf,"Warnning",MB_ICONWARNING);
+			Application->Terminate();
+		}catch(...){
+			MessageBox(Main_Form->Handle,"License Error!!!","Warnning",MB_ICONWARNING);
+			Application->Terminate();
+		}
+	}
+	#endif
+}
+

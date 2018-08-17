@@ -1,0 +1,36 @@
+//---------------------------------------------------------------------------
+
+#ifndef MainH
+#define MainH
+//---------------------------------------------------------------------------
+#include <System.Classes.hpp>
+#include <Vcl.Controls.hpp>
+#include <Vcl.StdCtrls.hpp>
+#include <Vcl.Forms.hpp>
+#include <Vcl.Buttons.hpp>
+#include <Vcl.ExtCtrls.hpp>
+//---------------------------------------------------------------------------
+class TMainForm : public TForm
+{
+__published:	// IDE-managed Components
+	TSpeedButton *Normal;
+	TLabeledEdit *ToolName;
+	TLabeledEdit *ToolVersion;
+	TLabeledEdit *ToolValidityDays;
+	TLabel *Label1;
+	TComboBox *Block;
+	TSpeedButton *SpeedButton1;
+	TSpeedButton *SpeedButton2;
+	TLabeledEdit *ToolUseCount;
+	void __fastcall NormalClick(TObject *Sender);
+private:	// User declarations
+public:		// User declarations
+	__fastcall TMainForm(TComponent* Owner);
+	void __fastcall check_InputValid();
+	void __fastcall generate_LocalLicence();
+	void __fastcall generate_ServerLicence();
+};
+//---------------------------------------------------------------------------
+extern PACKAGE TMainForm *MainForm;
+//---------------------------------------------------------------------------
+#endif

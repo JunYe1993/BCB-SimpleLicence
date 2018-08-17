@@ -1,0 +1,11 @@
+#ifndef CHECKERH
+#define CHECKERH
+
+#include "LicStruct.h"
+class Checker
+{
+private:
+public:
+};
+
+#endif

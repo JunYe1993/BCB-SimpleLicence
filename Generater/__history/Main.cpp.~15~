@@ -1,0 +1,40 @@
+//---------------------------------------------------------------------------
+
+#include <vcl.h>
+#pragma hdrstop
+
+#include "Main.h"
+#include "LicStruct.h"
+//---------------------------------------------------------------------------
+#pragma package(smart_init)
+#pragma resource "*.dfm"
+TMainForm *MainForm;
+//---------------------------------------------------------------------------
+__fastcall TMainForm::TMainForm(TComponent* Owner)
+	: TForm(Owner)
+{
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TMainForm::NormalClick(TObject *Sender)
+{
+	FILE *file;
+	String path;
+    struct _Lic licence;
+	TDateTime date = Now();
+
+
+	licence.ValidityDate = "";
+	licence.ValidityDate = DateToStr(date);
+
+	path = ExtractFilePath(Application->ExeName)+"License.lic";
+	file = _wfopen(path.w_str(),L"wb");
+	fseek(file,sizeof(licence)*0,SEEK_SET);
+	fwrite(&licence,sizeof(licence),1,file);
+	fclose(file);
+
+	//Label1->Caption = date.FormatString("yyyy/mm/dd");
+	//Label1->Caption = licence.ValidityDate;
+}
+//---------------------------------------------------------------------------
+

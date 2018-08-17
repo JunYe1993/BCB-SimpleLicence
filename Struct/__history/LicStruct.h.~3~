@@ -1,0 +1,17 @@
+#ifndef LICSTRUCTH
+#define LICSTRUCTH
+#include <vcl.h>
+
+struct _SerLic{
+	wchar_t ToolName[40];
+	float Version;
+	bool Lock;
+};
+
+struct _Lic{
+	wchar_t ToolName[40];
+	wchar_t ValidityDate[20];
+	float Version;
+	int ValidityUseCount;
+};
+#endif
